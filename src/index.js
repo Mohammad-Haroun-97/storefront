@@ -3,11 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {createStore} from 'redux'
+import CataReducer from './Redux/reducers/catagoryReducer'
+import { Provider } from 'react-redux';
+import allReducers from './Redux/reducers/index'
+
+const store= createStore(allReducers)
+
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
