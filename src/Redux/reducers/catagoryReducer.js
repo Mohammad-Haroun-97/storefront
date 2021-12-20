@@ -56,7 +56,7 @@ export default function CataReducer(state={},action) {
                         
                         break;
                 
-                    default:return{}
+                    default:return state
                         break;
     }
     

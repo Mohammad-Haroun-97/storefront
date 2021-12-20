@@ -7,10 +7,20 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
+import {Button} from '@mui/material';
+import { useDispatch } from 'react-redux';
+import {cartActions} from '../Redux/actions/cartActions'
+import {decreaseStock} from '../Redux/actions/cataActions.js/cataAction'
+import { v4 as uuidv4 } from 'uuid';
+
+
 
 
 export default function Products() {
+    const dispatch = useDispatch()
     const ProducerState=useSelector((state)=>state.productReducer)
+    
+
     console.log('globalState',ProducerState);
     return (
         <div>
@@ -40,6 +50,7 @@ export default function Products() {
                                 <Typography variant="caption" color="text.secondary">
                                     {`${item.price} • ${item.InventoryCount}`}
                                 </Typography>
+                                <Button onClick={()=>{dispatch(cartActions(item));dispatch(decreaseStock(item)) }} style={{background:'#FF4301', color:"white"}}>Add To Cart</Button>
                             </Box>
                         ) : (
                             <Box sx={{ pt: 0.5 }}>
