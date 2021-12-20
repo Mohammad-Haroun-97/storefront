@@ -31,3 +31,11 @@ export const Detective=()=>{
     
 }
 
+export const decreaseStock=(payload)=>{
+
+    return  {
+        type:'decreaseStock',
+        payload:payload
+
+    }
+}

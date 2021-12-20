@@ -1,10 +1,13 @@
 const faker =require('faker')
 
 
+
 export default function productReducer(state=[],action) {
     
+    let { type,payload} = action
+    
 
-    switch (action.type) {
+    switch (type) {
         case 'Historical':
             return [
 
@@ -12,7 +15,7 @@ export default function productReducer(state=[],action) {
                     name: faker.commerce.product(),
                     description:faker.commerce.productDescription(),
                     price:faker.commerce.price(),
-                    InventoryCount:faker.datatype.number(),
+                    InventoryCount:30,
                     img:faker.image.image()
                 
                 },
@@ -20,7 +23,7 @@ export default function productReducer(state=[],action) {
                     name: faker.commerce.product(),
                     description:faker.commerce.productDescription(),
                     price:faker.commerce.price(),
-                    InventoryCount:faker.datatype.number(),
+                    InventoryCount:30,
                     img:faker.image.nature()
                 
                 }
@@ -30,7 +33,7 @@ export default function productReducer(state=[],action) {
                     name: faker.commerce.product(),
                     description:faker.commerce.productDescription(),
                     price:faker.commerce.price(),
-                    InventoryCount:faker.datatype.number(),
+                    InventoryCount:30,
                     img:faker.image.imageUrl()
                 
                 }
@@ -41,7 +44,7 @@ export default function productReducer(state=[],action) {
        
     }
 
-    switch (action.type) {
+    switch (type) {
         case 'Horror':
 
             return [
@@ -50,7 +53,7 @@ export default function productReducer(state=[],action) {
                     name: faker.commerce.product(),
                     description:faker.commerce.productDescription(),
                     price:faker.commerce.price(),
-                    InventoryCount:faker.datatype.number(),
+                    InventoryCount:30,
                     img:faker.image.abstract()
                 
                 },
@@ -58,7 +61,7 @@ export default function productReducer(state=[],action) {
                     name: faker.commerce.product(),
                     description:faker.commerce.productDescription(),
                     price:faker.commerce.price(),
-                    InventoryCount:faker.datatype.number(),
+                    InventoryCount:30,
                     img:faker.image.animals()
                 
                 }
@@ -68,7 +71,7 @@ export default function productReducer(state=[],action) {
                     name: faker.commerce.product(),
                     description:faker.commerce.productDescription(),
                     price:faker.commerce.price(),
-                    InventoryCount:faker.datatype.number(),
+                    InventoryCount:30,
                     img:faker.image.business()
                 
                 }
@@ -79,7 +82,7 @@ export default function productReducer(state=[],action) {
        
     }
 
-    switch (action.type) {
+    switch (type) {
         case 'Fantasy':
 
             return [
@@ -88,7 +91,7 @@ export default function productReducer(state=[],action) {
                     name: faker.commerce.product(),
                     description:faker.commerce.productDescription(),
                     price:faker.commerce.price(),
-                    InventoryCount:faker.datatype.number(),
+                    InventoryCount:30,
                     img:faker.image.cats()
                 
                 },
@@ -96,7 +99,7 @@ export default function productReducer(state=[],action) {
                     name: faker.commerce.product(),
                     description:faker.commerce.productDescription(),
                     price:faker.commerce.price(),
-                    InventoryCount:faker.datatype.number(),
+                    InventoryCount:30,
                     img:faker.image.city()
                 
                 }
@@ -106,7 +109,7 @@ export default function productReducer(state=[],action) {
                     name: faker.commerce.product(),
                     description:faker.commerce.productDescription(),
                     price:faker.commerce.price(),
-                    InventoryCount:faker.datatype.number(),
+                    InventoryCount:30,
                     img:faker.image.food()
                 
                 }
@@ -117,7 +120,7 @@ export default function productReducer(state=[],action) {
      
     }
 
-    switch (action.type) {
+    switch (type) {
         case 'Detective':
 
             return [
@@ -126,7 +129,7 @@ export default function productReducer(state=[],action) {
                     name: faker.commerce.product(),
                     description:faker.commerce.productDescription(),
                     price:faker.commerce.price(),
-                    InventoryCount:faker.datatype.number()
+                    InventoryCount:30
                     ,
                     img:faker.image.nightlife()
                 
@@ -135,7 +138,7 @@ export default function productReducer(state=[],action) {
                     name: faker.commerce.product(),
                     description:faker.commerce.productDescription(),
                     price:faker.commerce.price(),
-                    InventoryCount:faker.datatype.number()
+                    InventoryCount:30
                     ,
                     img:faker.image.fashion()
                 
@@ -146,18 +149,31 @@ export default function productReducer(state=[],action) {
                     name: faker.commerce.product(),
                     description:faker.commerce.productDescription(),
                     price:faker.commerce.price(),
-                    InventoryCount:faker.datatype.number(),
+                    InventoryCount:30,
                     img:faker.image.people(),
                 
                 }
             ]
 
+            case 'decreaseStock':
+
+                return state.map(item => {
+                    if(item.name === action.payload.name){
+                        item.inventoryCount--;
+                    }
+                    return item;
+                });
+
             
             break;
+
+          
     
-        default: return[]
+        default: return state
             break;
     }
+
+    
 }
 
 

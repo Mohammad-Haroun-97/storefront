@@ -1,11 +1,12 @@
 {
   "name": "storefront",
-  "homepage":"http://Mohammad-Haroun-97.github.io/storefront",
+  "homepage": "http://Mohammad-Haroun-97.github.io/storefront",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.2.4",
     "@mui/material": "^5.2.4",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
@@ -24,7 +25,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-"deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
