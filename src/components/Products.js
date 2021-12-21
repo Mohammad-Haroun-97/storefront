@@ -9,14 +9,35 @@ import Skeleton from "@mui/material/Skeleton";
 import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../Redux/actions/cartActions";
-import { decreaseStock } from "../Redux/actions/cataActions.js/cataAction";
-import { v4 as uuidv4 } from "uuid";
+import {decrementStock} from '../Redux/actions/cataActions.js/cataAction'
+import { useEffect } from "react";
+
+
 
 export default function Products() {
   const dispatch = useDispatch();
+
+  // function getQuote() {
+  //   dispatch(get());
+  // }
+
+  // useEffect(() => {
+  //   getQuote()
+  // }, [])
+  
   const ProducerState = useSelector((state) => state.productReducer);
 
-  console.log("globalState", ProducerState);
+  // useEffect(() => {
+
+
+    
+   
+  // }, [ProducerState])
+
+  console.log("globalProducerStateState", ProducerState);
+
+
+
   return (
     <div>
       <Grid
@@ -25,8 +46,10 @@ export default function Products() {
         container
         wrap="nowrap"
       >
-        {ProducerState.map((item, index) => (
-          <Box key={index} sx={{ width: 210, marginRight: 0.5, my: 5 }}>
+        {ProducerState.map((item, index) => {
+          return item.inventoryCount?
+         
+            <Box key={index} sx={{ width: 210, marginRight: 0.5, my: 5 }}>
             {item ? (
               <img
                 style={{
@@ -36,7 +59,7 @@ export default function Products() {
                   border: "solid",
                 }}
                 alt={item.name}
-                src={item.img}
+                src={item.image}
               />
             ) : (
               <Skeleton variant="rectangular" width={210} height={118} />
@@ -71,13 +94,13 @@ export default function Products() {
                   <br />
                 </Typography>
                 <Typography variant="caption" color="text.secondary">
-                  {` Stock : ${item.InventoryCount}`}
+                  {` Stock : ${item.inventoryCount}`}
                 </Typography>
                 <br />
                 <Button
                   onClick={() => {
                     dispatch(cartActions(item));
-                    dispatch(decreaseStock(item));
+                    dispatch(decrementStock(item));
                   }}
                   style={{ background: "#FF4301", color: "white" }}
                 >
@@ -90,8 +113,8 @@ export default function Products() {
                 <Skeleton width="60%" />
               </Box>
             )}
-          </Box>
-        ))}
+          </Box>: "The Item is Not available"
+        })}
       </Grid>
     </div>
   );

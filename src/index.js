@@ -7,8 +7,10 @@ import {createStore} from 'redux'
 import CataReducer from './Redux/reducers/catagoryReducer'
 import { Provider } from 'react-redux';
 import allReducers from './Redux/reducers/index'
+import thunk from './Redux/middlewares/thunk'
+import { applyMiddleware } from 'redux';
 
-const store= createStore(allReducers)
+const store= createStore(allReducers,applyMiddleware(thunk))
 
 
 ReactDOM.render(
