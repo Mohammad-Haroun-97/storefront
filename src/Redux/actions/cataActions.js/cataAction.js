@@ -1,41 +1,28 @@
+const axios = require("axios");
+const url = "https://alaraby-library.herokuapp.com";
 
-export const Historical=()=>{
+export const get = (catagory) => (dispatch) => {
+  return axios.get(`${url}/books`).then((results) => {
+    console.log("resultsresultsresults", results);
 
-    return {
-        type : 'Historical'
-    }
-    
-}
+    let filterArr = results.data.filter((item) => {
+      return item.catagory === catagory && item.inventoryCount>0;
+    });
 
-export const Horror=()=>{
+    dispatch({
+      type: "GET",
+      payload: filterArr,
+    });
+  });
+};
 
-    return {
-        type : 'Horror'
-    }
-    
-}
 
-export const Fantasy=()=>{
-
-    return {
-        type : 'Fantasy'
-    }
-    
-}
-
-export const Detective=()=>{
-
-    return {
-        type : 'Detective'
-    }
-    
-}
-
-export const decreaseStock=(payload)=>{
-
-    return  {
-        type:'decreaseStock',
-        payload:payload
-
-    }
+export const decrementStock = (item) => dispatch => {
+    item.inventoryCount--;
+    return axios.put(`${url}/books/${item.id}`, item).then(res => {
+        dispatch({
+            type: 'DECREMENT_STOCK',
+            payload: res.data
+        });
+    });
 }

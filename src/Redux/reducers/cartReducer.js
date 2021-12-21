@@ -6,11 +6,11 @@ const cartReducer=(state={
     cartFlag:false,
     Total:0
 },action)=>{
-    let {type, payload,id}=action
+    let {type, payload}=action
 
 switch (type) {
     case 'addToCart':
-        payload.id=state.addingItems.length
+        
         return {...state,
             Total:state.Total+parseInt( payload.price),
             addingItems:[...state.addingItems,payload]
