@@ -12,7 +12,7 @@ switch (type) {
     case 'addToCart':
         
         return {...state,
-            Total:state.Total+parseInt( payload.price),
+            Total:parseInt( state.Total) + parseInt( payload.price),
             addingItems:[...state.addingItems,payload]
 
         }
@@ -38,6 +38,17 @@ switch (type) {
                     }
                     
                     break;
+
+                    case 'checkout':
+
+                    return {
+                        addingItems:[],
+                        cartFlag:true,
+                        Total:0
+
+
+                    }
+
 
     default:
         return state

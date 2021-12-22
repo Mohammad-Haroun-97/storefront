@@ -17,6 +17,12 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { styled } from '@mui/material/styles';
 import { orange } from '@mui/material/colors';
 import SvgIcon from '@mui/material/SvgIcon';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   '& .MuiBadge-badge': {
@@ -68,21 +74,23 @@ export default function Header() {
         
 
 
-          <IconButton  onClick={()=>dispatch( closeCart())}  size="large" style={{  background: '#FF4301', marginRight:"60px"}} aria-label="add to shopping cart" aria-label="cart">
+          <IconButton  onClick={()=>dispatch( closeCart())}  size="sm" style={{  background: '#FF4301', marginRight:"60px"}} aria-label="add to shopping cart" aria-label="cart">
  
-  <HomeIcon  />
+  <Link to='/storefront'>  <HomeIcon  /></Link>
   
 </IconButton>
 
 
 
 
-
+<Link to='/Simplecart'>
           <IconButton  onClick={()=>dispatch(openCart()) }  size="large" style={{  background: '#FF4301', marginRight:"50px"}} aria-label="add to shopping cart" aria-label="cart">
   <StyledBadge badgeContent={cartState.addingItems.length} color="secondary">
     <ShoppingCartIcon />
   </StyledBadge>
 </IconButton>
+</Link>
+
          
         </Toolbar>
       </AppBar>
