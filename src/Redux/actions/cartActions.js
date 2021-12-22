@@ -2,12 +2,13 @@
 const uuid = require("uuid").v4;
 
 export const cartActions=(payload)=>{
-    let id= uuid()
+    console.log('payloadpayload',payload);
+   
 
     return {
         type : 'addToCart',
         payload: payload,
-        id:id
+        
     }
 }
 
@@ -32,5 +33,12 @@ export const deleteItem=(payload)=>{
         type :'deleteItem',
         payload : payload,
         
+    }
+}
+
+export const checkout=()=>{
+
+    return {
+        type:'checkout'
     }
 }
